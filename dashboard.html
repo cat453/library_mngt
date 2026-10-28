@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#2563eb" />
+    <title>LibraryHub — Discover your next read</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="../CSS/dashboard.css?v=library-redesign-82"
+    />
+    <script src="../JS/dashboard.js?v=library-redesign-82" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#home" aria-label="LibraryHub home"
+          ><span class="brand-mark" aria-hidden="true"
+            ><svg viewBox="0 0 24 24">
+              <path
+                d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"
+              />
+              <path d="M4 6v15.5M8 7h8M8 11h8M8 15h5" /></svg></span
+          ><span>library<span class="brand-light">hub</span></span></a
+        >
+        <nav class="side-nav" aria-label="Main navigation">
+          <div class="nav-group-label">DISCOVER</div>
+          <a class="nav-link active" data-view-link="overview" href="#home"
+            ><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.2"/></svg></span> Overview</a
+          >
+          <a class="nav-link" data-view-link="browse" href="#browse">
+            <span class="nav-icon">▤</span> Browse books
+          </a>
+          <div class="nav-group-label library-group-label">YOUR LIBRARY</div>
+          <a class="nav-link" data-view-link="borrowed" href="#my-books"
+            ><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4.5h12.5A1.5 1.5 0 0 1 19 6v14H6a2 2 0 0 1-2-2V6a1.5 1.5 0 0 1 1-1.5Z"/><path d="M7 4.5V20M10 8h6M10 12h6M10 16h4"/></svg></span>My books
+            <span class="nav-count" id="nav-count">0</span></a
+          >
+          <a class="nav-link" data-view-link="requests" href="#requests"><span class="nav-icon" aria-hidden="true">◷</span> Book requests <span class="nav-count" id="request-count">0</span></a>
+          <a class="nav-link" data-view-link="log-books" href="#log-books">
+            <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 2.64-6.36L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg></span> Log Books
+            <span class="nav-count" id="on-time-count">0</span>
+          </a>
+          <a class="nav-link" data-view-link="favorites" href="#favorites">
+            <span class="nav-icon" aria-hidden="true">♡</span> Favorites
+            <span class="nav-count" id="favorites-count">0</span>
+          </a>
+        </nav>
+        <a class="nav-link settings-link" data-view-link="settings" href="#settings">
+          <span class="nav-icon" aria-hidden="true">S</span> Settings
+        </a>
+      </aside>
+
+      <main class="main-content" id="home">
+        <header class="topbar">
+          <button
+            class="icon-button menu-toggle"
+            id="menu-toggle"
+            aria-label="Open navigation"
+          >
+            ☰
+          </button>
+          <div class="breadcrumb">
+            Pages <span>/</span> <strong>Overview</strong>
+          </div>
+          <div class="top-actions">
+            <button
+              class="icon-button notification-button"
+              aria-label="Notifications"
+            >
+              ♧<i></i>
+            </button>
+            <div class="notification-panel" id="notification-panel" hidden><strong>Notifications</strong><div id="notification-list"></div></div>
+            <div class="top-divider"></div>
+            <div class="user-profile">
+              <div class="avatar" id="user-avatar">JD</div>
+              <div class="user-meta">
+                <strong id="user-display-name">rene baterbonia</strong><span>Library member</span>
+              </div>
+              <span class="chevron">⌄</span>
+            </div>
+          </div>
+        </header>
+        <section class="welcome-row">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-line"></span> YOUR PERSONAL LIBRARY
+            </div>
+            <h1 id="welcome-heading">Good morning, rene <span class="wave"></span></h1>
+            <p class="welcome-copy">
+              A new chapter is waiting. Find a book that speaks to you.
+            </p>
+          </div>
+          <div class="date-chip" aria-label="Today's date">
+            <span class="calendar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <rect x="3.5" y="5" width="17" height="16" rx="3" />
+                <path
+                  d="M7.5 3v4M16.5 3v4M4 9.5h16M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01"
+                />
+              </svg>
+            </span>
+            <span class="date-chip-copy">
+              <span class="date-chip-label">TODAY</span>
+              <strong id="today-date">Loading date</strong>
+            </span>
+          </div>
+        </section>
+
+        <section class="featured-banner">
+          <div class="feature-copy">
+            <span class="feature-kicker"
+              ><span class="sparkle"></span> LIBRARIAN'S PICK</span
+            >
+            <h2>Stories that stay with you.</h2>
+            <p>
+              Thoughtfully chosen reads for curious minds and quiet moments.
+            </p>
+            <a class="feature-link" href="#catalog"
+              >Explore this month's picks <span>→</span></a
+            >
+          </div>
+          <div class="feature-art" aria-hidden="true">
+            <div class="art-orbit orbit-one"></div>
+            <div class="art-orbit orbit-two"></div>
+            <div class="art-sun"></div>
+            <div class="art-book book-back"></div>
+            <div class="art-book book-front">
+              <span>THE<br />ART OF<br />LOOKING</span><i></i>
+            </div>
+            <div class="art-leaf leaf-one"></div>
+            <div class="art-leaf leaf-two"></div>
+            <span class="art-star star-a"></span
+            ><span class="art-star star-b"></span
+            ><span class="art-dot dot-a"></span
+            ><span class="art-dot dot-b"></span>
+          </div>
+          <div class="banner-swoop"></div>
+        </section>
+
+        <section class="stats-grid" aria-label="Your library summary">
+          <a href="#my-books" data-view-link="borrowed" class="stat-card stat-card-link" aria-label="Open My books to view borrowed books">
+            <div class="stat-top">
+              <span class="stat-icon blue-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path
+                    d="M12 7.2c-1.8-2.1-4.8-2.8-8-2v13.2c3.2-.8 6.2-.1 8 2 1.8-2.1 4.8-2.8 8-2V5.2c-3.2-.8-6.2-.1-8 2Z"
+                  />
+                  <path
+                    d="M12 7.2v13.2M7 8.5c1.3-.1 2.4.2 3.4.8M17 8.5c-1.3-.1-2.4.2-3.4.8"
+                  />
+                </svg> </span
+              ><span class="stat-caption">IN YOUR HANDS</span>
+            </div>
+            <div class="stat-value" id="borrowed-total">
+              0 <small>/ 5</small>
+            </div>
+            <div class="stat-bottom">
+              <span>Books borrowed</span
+              ><span class="stat-note">of 5 allowed</span>
+            </div>
+            <div class="progress-track"><span id="borrow-progress"></span></div>
+          </a>
+          <a href="#my-books" data-view-link="borrowed" class="stat-card stat-card-link" aria-label="Open My books to check books due this week">
+            <div class="stat-top">
+              <span class="stat-icon amber-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <rect x="3.5" y="5" width="17" height="16" rx="2.5" />
+                  <path d="M8 3.5v3M16 3.5v3M4 9h16" />
+                  <circle cx="13" cy="15" r="3" />
+                  <path d="M13 13.5v1.7l1.2.8" />
+                </svg> </span
+              ><span class="stat-caption">COMING UP</span>
+            </div>
+            <div class="stat-value" id="due-total">0</div>
+            <div class="stat-bottom">
+              <span>Due this week</span
+              ><span class="stat-note">Stay on track</span>
+            </div>
+            <div class="stat-underline amber-underline"></div>
+          </a>
+          <a href="#log-books" data-view-link="log-books" class="stat-card reading-stat-card stat-card-link" aria-label="Open Log Books to view your reading history">
+            <div class="stat-top">
+              <span class="stat-icon green-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path d="M5 4.5h10l4 4v11H5z" />
+                  <path d="M15 4.5v4h4M8 14l2.5 2.5L16 11" />
+                </svg> </span
+              ><span class="stat-caption">A GOOD HABIT</span>
+            </div>
+            <div class="stat-value" id="books-read-total">0</div>
+            <div class="stat-bottom">
+              <span>Books read this year</span
+              ><span class="stat-note positive" id="books-read-month"
+                >0 this month</span
+              >
+            </div>
+            <div class="stat-underline green-underline"></div>
+          </a>
+        </section>
+
+        <section class="catalog-section" id="catalog">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">
+                <span class="eyebrow-line"></span> THE COLLECTION
+              </div>
+              <h2>Find your next read</h2>
+            </div>
+            <a
+              href="#browse"
+              class="view-all"
+              id="view-all"
+              data-view-link="browse"
+              >View all books <span>→</span></a
+            >
+          </div>
+          <div class="catalog-toolbar">
+            <p class="collection-note">Recommended Books</p>
+          </div>
+          <div class="book-grid" id="book-grid" aria-live="polite"></div>
+        </section>
+        <section
+          class="catalog-section browse-section"
+          id="browse-section"
+          hidden
+        >
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">
+                <span class="eyebrow-line"></span> THE LIBRARY COLLECTION
+              </div>
+              <h2>Browse books</h2>
+              <p class="section-description">
+                Explore every title in the collection. Choose a book to see its
+                details or borrow it.
+              </p>
+            </div>
+          </div>
+          <div class="browse-toolbar">
+            <label class="browse-search-label" for="browse-search">
+              <span>Search books or authors</span>
+              <div class="browse-search-box">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <circle cx="10.8" cy="10.8" r="6.8" />
+                  <path d="m16 16 4.5 4.5" />
+                </svg>
+                <input id="browse-search" type="search" placeholder="Find a book or author..." autocomplete="off" />
+              </div>
+            </label>
+            <label class="sort-control" for="browse-sort">
+              <span>Sort by</span>
+              <select id="browse-sort" aria-label="Sort books">
+                <option value="featured">Featured</option>
+                <option value="title-asc">Title: A to Z</option>
+                <option value="title-desc">Title: Z to A</option>
+                <option value="author">Author</option>
+                <option value="genre">Category</option>
+              </select>
+            </label>
+          </div>
+          <div class="browse-navigation-row">
+            <div class="browse-category-list" id="browse-categories" role="group" aria-label="Filter books by category">
+              <button class="category-chip is-active" type="button" data-category-filter="all" aria-pressed="true">All books</button>
+              <button class="category-chip" type="button" data-category-filter="IT" aria-pressed="false">IT (Information Technology)</button>
+              <button class="category-chip" type="button" data-category-filter="Science" aria-pressed="false">Science</button>
+              <button class="category-chip" type="button" data-category-filter="English" aria-pressed="false">English</button>
+              <button class="category-chip" type="button" data-category-filter="Social Studies" aria-pressed="false">Social Studies</button>
+            </div>
+            <div class="browse-results-bar">
+              <p id="browse-result-count" role="status" aria-live="polite">20 books</p>
+              <button class="clear-browse-filters" id="clear-browse-filters" type="button" hidden>Clear filters</button>
+            </div>
+          </div>
+          <div
+            class="book-grid browse-grid"
+            id="browse-grid"
+            aria-live="polite"
+          ></div>
+          <div class="browse-empty-state" id="browse-empty" hidden>
+            <span class="browse-empty-icon" aria-hidden="true">⌕</span>
+            <h3>No books found</h3>
+            <p>Try a different title, author, or category.</p>
+          </div>
+        </section>
+        <section class="my-books-section" id="my-books" hidden>
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">
+                <span class="eyebrow-line"></span> YOUR SHELF
+              </div>
+              <h2>My borrowed books</h2>
+              <p class="section-description">
+                Keep track of the books you are reading and return them when you
+                are done.
+              </p>
+            </div>
+            <div class="shelf-header-actions"><span class="borrowed-count" id="borrowed-count">0 books</span><button class="clear-data-button" id="open-clear-data" type="button" aria-label="Clear all saved library data" title="Clear all saved library data">♲</button></div>
+          </div>
+          <div
+            class="borrowed-grid book-grid"
+            id="borrowed-grid"
+            aria-live="polite"
+          ></div>
+          <div class="borrowed-empty" id="borrowed-empty">
+            <div class="empty-icon">▣</div>
+            <h3>Your shelf is waiting</h3>
+            <p>Browse the collection and borrow a book to see it here.</p>
+            <button class="primary-button" id="browse-from-empty">
+              Browse books
+            </button>
+          </div>
+          <section class="request-section" aria-labelledby="request-title">
+            <div class="section-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> APPROVAL TRACKER</div><h2 id="request-title">My book requests</h2><p class="section-description">Track requests waiting for librarian review.</p></div></div>
+            <div id="request-list" class="request-list" aria-live="polite"></div>
+            <div class="borrowed-empty" id="requests-empty"><h3>No requests yet</h3><p>Choose a book and submit a borrow request to see its status here.</p></div>
+          </section>
+        </section>
+        <section class="my-books-section" id="favorites-section" hidden>
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">
+                <span class="eyebrow-line"></span> READ LATER
+              </div>
+              <h2>Favorites</h2>
+              <p class="section-description">Books you saved to read later.</p>
+            </div>
+            <span class="borrowed-count" id="favorites-total">0 books</span>
+          </div>
+          <div class="book-grid" id="favorites-grid" aria-live="polite"></div>
+          <div class="borrowed-empty" id="favorites-empty">
+            <div class="empty-icon" aria-hidden="true">♡</div>
+            <h3>No favorites yet</h3>
+            <p>Tap the heart on a book to save it for later.</p>
+            <button
+              class="primary-button"
+              id="browse-from-favorites"
+              type="button"
+            >
+              Browse books
+            </button>
+          </div>
+        </section>
+        <section class="my-books-section" id="on-time-section" hidden>
+          <div class="section-heading">
+            <div>
+              <h2>Log books</h2>
+              <div class="eyebrow">
+                <span class="eyebrow-line"></span> RETURN HISTORY
+              </div>
+              <p class="section-description">
+                Browse your return history.
+              </p>
+            </div>
+            <span class="borrowed-count" id="on-time-total">0 books</span>
+          </div>
+          <div class="book-grid" id="on-time-grid" aria-live="polite"></div>
+          <div class="borrowed-empty" id="on-time-empty" hidden>
+            <div class="empty-icon" aria-hidden="true">▤</div>
+            <h3 id="on-time-empty-title">No returned books yet</h3>
+            <p id="on-time-empty-copy">Returned books will appear here.</p>
+          </div>
+        </section>
+        <section class="settings-page" id="settings-page" hidden>
+          <div class="settings-page-heading">
+            <div class="eyebrow"><span class="eyebrow-line"></span> ACCOUNT & PREFERENCES</div>
+            <h1>Settings</h1>
+            <p>Manage your profile, password, and appearance. These settings are saved in this browser only.</p>
+          </div>
+          <form id="settings-form" class="settings-page-form">
+            <section class="settings-section settings-card" aria-labelledby="profile-settings-title">
+              <h2 id="profile-settings-title">Profile</h2>
+              <p class="settings-card-note">Update the name displayed in your library.</p>
+              <label for="account-name">Name</label>
+              <input class="settings-input" id="account-name" name="name" type="text" autocomplete="name" required />
+            </section>
+            <section class="settings-section settings-card" aria-labelledby="password-settings-title">
+              <h2 id="password-settings-title">Change password</h2>
+              <p class="settings-card-note">Choose a password with at least 8 characters.</p>
+              <label for="current-password">Current password</label>
+              <input class="settings-input" id="current-password" name="current-password" type="password" autocomplete="current-password" />
+              <label for="new-password">New password</label>
+              <input class="settings-input" id="new-password" name="new-password" type="password" autocomplete="new-password" minlength="8" />
+              <label for="confirm-password">Confirm new password</label>
+              <input class="settings-input" id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" minlength="8" />
+              <p class="settings-help">First time setting a password? Leave current password blank. Future changes require it.</p>
+            </section>
+            <section class="settings-section settings-card" aria-labelledby="appearance-settings-title">
+              <h2 id="appearance-settings-title">Appearance</h2>
+              <p class="settings-card-note">Adjust how LibraryHub looks on this device.</p>
+              <label for="text-size-setting">Text size</label>
+              <select id="text-size-setting">
+                <option value="1">Standard</option>
+                <option value="1.08">Large</option>
+              </select>
+              <div class="settings-theme">
+                <span>Theme</span><strong><i></i> Blue and white</strong>
+              </div>
+            </section>
+            <div class="settings-page-actions">
+              <p class="settings-feedback" id="settings-feedback" role="status" aria-live="polite"></p>
+              <button class="primary primary-button" type="submit">Save changes</button>
+            </div>
+          </form>
+        </section>
+        <footer class="page-footer">
+          <span>Made for readers, by readers.</span
+          ><span
+            >Need help?
+            <a href="mailto:library@example.com">Ask a librarian</a></span
+          ><a href="./librarian-dashboard.html">Librarian portal</a>
+        </footer>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite">
+      <span class="toast-check"></span
+      ><span id="toast-message">Book borrowed successfully</span>
+    </div>
+    <dialog class="book-dialog" id="book-dialog">
+      <button
+        class="dialog-close"
+        id="book-dialog-close"
+        aria-label="Close book details"
+      >
+        ×
+      </button>
+      <div class="book-dialog-layout">
+        <div class="dialog-cover-column">
+          <div class="dialog-cover-wrap" id="dialog-cover-wrap">
+            <div class="book-cover dialog-cover" id="dialog-cover"></div>
+          </div>
+                    <div class="dialog-cover-details">
+            <div class="cover-detail-row">
+              <span>Book ID</span>
+              <strong id="dialog-book-id"></strong>
+            </div>
+            <div class="cover-detail-row">
+              <span>Author</span>
+              <strong id="dialog-cover-author"></strong>
+            </div>
+            <div class="cover-detail-row">
+              <span>Genre / category</span>
+              <strong id="dialog-genre"></strong>
+            </div>
+            <div class="cover-detail-row">
+              <span>Page count</span>
+              <strong id="dialog-pages"></strong>
+            </div>
+            <div class="cover-detail-row">
+              <span>Publication year</span>
+              <strong id="dialog-published"></strong>
+            </div>
+          </div>
+        </div>
+        <div class="book-dialog-info">
+          <div class="book-category" id="dialog-category"></div>
+          <h2 id="dialog-title"></h2>
+          <p class="dialog-author" id="dialog-author"></p>
+          <p class="dialog-description" id="dialog-description"></p>
+          <button class="read-toggle" id="dialog-read-toggle" type="button">
+            Mark as read
+          </button>
+          <div class="inline-borrow-period" id="borrow-period-controls">
+            <label for="borrow-return-date"
+              >Choose return date (within 1 week)</label
+            >
+            <input
+              class="calendar-entry"
+              id="borrow-return-date"
+              type="date"
+              aria-label="Choose return date"
+            />
+            <p class="inline-return-date">
+              Return by <strong id="return-date-preview"></strong>
+            </p>
+          </div>
+          <div class="dialog-book-actions">
+            <span class="availability" id="dialog-availability"></span
+            ><button class="primary-button" id="dialog-borrow">
+              Borrow this book
+            </button>
+          </div>
+        </div>
+      </div>
+    </dialog>
+    <dialog class="confirm-dialog" id="cancel-request-dialog" aria-labelledby="cancel-dialog-heading">
+      <h2 id="cancel-dialog-heading">Cancel book request?</h2>
+      <p>Do you want to cancel your request for <strong id="cancel-request-title"></strong>?</p>
+      <div class="confirm-dialog-actions">
+        <button class="secondary-button" id="dismiss-cancel-request" type="button">Keep request</button>
+        <button class="primary-button" id="confirm-cancel-request" type="button">Yes, cancel request</button>
+      </div>
+    </dialog>
+    <dialog class="confirm-dialog" id="clear-data-dialog" aria-labelledby="clear-data-heading">
+      <h2 id="clear-data-heading">Delete all saved data?</h2>
+      <p>This removes your saved books, requests, favorites, reading history, notifications, profile, and preferences from this browser. This cannot be undone.</p>
+      <div class="confirm-dialog-actions"><button class="secondary-button" id="keep-saved-data" type="button">Keep my data</button><button class="primary-button clear-data-confirm" id="confirm-clear-data" type="button">Delete all data</button></div>
+    </dialog>
+  </body>
+</html>
